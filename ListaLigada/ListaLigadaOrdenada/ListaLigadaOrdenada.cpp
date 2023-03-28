@@ -8,6 +8,7 @@ struct NO {
 };
 
 NO* primeiro = NULL;
+NO* ultimo = NULL;
 
 // headers
 void menu();
@@ -17,7 +18,6 @@ void exibirElementos();
 void inserirElemento();
 void excluirElemento();
 void buscarElemento();
-NO* posicaoElemento(int numero);
 //--------------------------
 
 
@@ -114,40 +114,73 @@ void exibirElementos()
 
 void inserirElemento()
 {
-	// aloca memoria dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
 		return;
 	}
-
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
+	NO* aux = primeiro;
 
 	if (primeiro == NULL)
 	{
 		primeiro = novo;
+		ultimo = novo;
 	}
-	else
-	{
-		// procura o final da lista
+	else if (novo -> valor < primeiro -> valor) {	
+
+		primeiro = novo;
+		primeiro->prox = aux;
+
+	}
+
+	else {
 		NO* aux = primeiro;
 		while (aux->prox != NULL) {
+			if (aux->prox->valor > novo->valor) {
+				break;
+			}
 			aux = aux->prox;
 		}
-		aux->prox = novo;
+		if (aux->valor != novo->valor) {
+
+			novo->prox = aux->prox;
+			aux->prox = novo;
+		}
+		else {
+			cout << "elemento ja se encontra na lista! \n";
+		}
 	}
 }
 
 void excluirElemento()
 {
-
+	NO* aux = primeiro;
+	NO* ex = (NO*)malloc(sizeof(NO));
+	if (ex == NULL) {
+		return;
+	}
+	cout << "digite o elemento a excluir";
+	cin >> ex->valor;
 }
 
 void buscarElemento()
 {
-
+	NO* aux = primeiro;
+	int busca;
+	cout << "Digite o elemento que está procurando: ";
+	cin >> busca -> valor;
+	if (exibirQuantidadeElementos == 0 ){
+		cout << "lista vazia";
+	}
+	else {
+		while (aux-> prox != NULL) {
+		if (aux -> valor = busca)
+		}
+	}
+	
 }
 
 
