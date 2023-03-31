@@ -8,7 +8,6 @@ struct NO {
 };
 
 NO* primeiro = NULL;
-NO* ultimo = NULL;
 
 // headers
 void menu();
@@ -122,15 +121,14 @@ void inserirElemento()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
-	NO* aux = primeiro;
+	
 
 	if (primeiro == NULL)
 	{
 		primeiro = novo;
-		ultimo = novo;
 	}
 	else if (novo -> valor < primeiro -> valor) {	
-
+		NO* aux = primeiro;
 		primeiro = novo;
 		primeiro->prox = aux;
 
@@ -157,28 +155,48 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	NO* aux = primeiro;
 	NO* ex = (NO*)malloc(sizeof(NO));
 	if (ex == NULL) {
 		return;
 	}
-	cout << "digite o elemento a excluir";
+	ex->prox = NULL;
+
+	NO* aux = primeiro;
+	cout << "digite o elemento a excluir: ";
 	cin >> ex->valor;
+	while (aux->prox != NULL) {
+		if (aux->prox->valor == ex->valor) {
+			aux->prox = aux->prox->prox;
+			cout << "numero excluido\n";
+			free (ex);
+			break;
+		}
+		aux = aux->prox;
+	 }
+		 
+
+
 }
 
 void buscarElemento()
 {
-	NO* aux = primeiro;
-	int busca;
+	NO* busca = (NO*)malloc(sizeof(NO));
+	
 	cout << "Digite o elemento que está procurando: ";
 	cin >> busca -> valor;
-	if (exibirQuantidadeElementos == 0 ){
+	if (primeiro == NULL ){
 		cout << "lista vazia";
 	}
 	else {
-		while (aux-> prox != NULL) {
-		if (aux -> valor = busca)
-		}
+		NO* aux = primeiro;
+		while (aux != NULL)  {
+			if (aux -> valor == busca ->valor) 
+{
+				cout << "numero encontrado\n";  
+				break;
+}
+			aux = aux -> prox;
+}
 	}
 	
 }
